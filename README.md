@@ -15,7 +15,7 @@ This repository contains a C# implementation of an event dispatcher designed to 
 1. **Subscribe to Events**: Use the `Subscribe` method to subscribe event handlers to specific event types:
 
     ```csharp
-    var dispatcher = new EventsDispatcher();
+    var dispatcher = new Dispatcher();
     dispatcher.Subscribe<MyEventType>(HandleMyEvent);
     ```
 
@@ -34,7 +34,7 @@ This repository contains a C# implementation of an event dispatcher designed to 
 ## Example
 
 ```csharp
-var dispatcher = new EventsDispatcher();
+var dispatcher = new Dispatcher();
 
 // Subscribe event handler
 dispatcher.Subscribe<MyEvent>(HandleMyEvent);
