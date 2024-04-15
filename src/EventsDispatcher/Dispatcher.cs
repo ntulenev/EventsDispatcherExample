@@ -9,9 +9,6 @@ namespace EventsDispatcher;
 /// </summary>
 public sealed class Dispatcher : IDispatcher
 {
-    private ImmutableDictionary<Type, ImmutableList<Delegate>> _handlers;
-    private readonly object _lock = new object();
-
     /// <summary>
     /// Initializes a new instance of the <see cref="Dispatcher"/> class.
     /// </summary>
@@ -84,4 +81,7 @@ public sealed class Dispatcher : IDispatcher
             await Task.WhenAll(handlerTasks);
         }
     }
+    
+    private ImmutableDictionary<Type, ImmutableList<Delegate>> _handlers;
+    private readonly object _lock = new object();
 }
