@@ -83,5 +83,5 @@ public sealed class Dispatcher : IDispatcher
     }
     
     private ImmutableDictionary<Type, ImmutableList<Delegate>> _handlers;
-    private readonly object _lock = new object();
+    private readonly Lock _lock = new();
 }
