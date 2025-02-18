@@ -1,4 +1,4 @@
-﻿namespace EventsDispatcher;
+namespace EventsDispatcher;
 
 /// <summary>
 /// Represents an abstraction for a dispatcher used in Domain-Driven Design (DDD).

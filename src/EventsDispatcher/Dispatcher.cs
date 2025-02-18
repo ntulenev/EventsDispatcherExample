@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 
 namespace EventsDispatcher;
 
@@ -50,14 +50,9 @@ public sealed class Dispatcher : IDispatcher
             if (_handlers.TryGetValue(eventType, out var handlers))
             {
                 var newHandlers = handlers.Remove(handler);
-                if (newHandlers.Count == 0)
-                {
-                    _handlers = _handlers.Remove(eventType);
-                }
-                else
-                {
-                    _handlers = _handlers.SetItem(eventType, newHandlers);
-                }
+                _handlers = newHandlers.Count == 0
+                            ? _handlers.Remove(eventType) :
+                              _handlers.SetItem(eventType, newHandlers);
             }
         }
     }
@@ -78,10 +73,10 @@ public sealed class Dispatcher : IDispatcher
             var handlerTasks = handlers.SelectMany(x => x.GetInvocationList())
                 .Cast<Func<TEvent, CancellationToken, Task>>()
                 .Select(handler => handler(evt, cancellationToken));
-            await Task.WhenAll(handlerTasks);
+            await Task.WhenAll(handlerTasks).ConfigureAwait(false);
         }
     }
-    
+
     private ImmutableDictionary<Type, ImmutableList<Delegate>> _handlers;
     private readonly Lock _lock = new();
 }

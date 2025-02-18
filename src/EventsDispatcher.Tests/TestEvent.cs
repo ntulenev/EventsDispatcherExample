@@ -1,6 +1,5 @@
-﻿namespace EventsDispatcher.Tests;
+namespace EventsDispatcher.Tests;
 
-public sealed class TestEvent
+internal sealed class TestEvent
 {
-    
 }

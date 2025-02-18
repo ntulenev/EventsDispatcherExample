@@ -13,6 +13,13 @@
 		<NuGetAuditLevel>low</NuGetAuditLevel>		
     </PropertyGroup>
 
+	<PropertyGroup>
+		<AnalysisMode>AllEnabledByDefault</AnalysisMode>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+	</PropertyGroup>
+
     <ItemGroup>
         <PackageReference Include="FluentAssertions" Version="7.0.0-alpha.3" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
