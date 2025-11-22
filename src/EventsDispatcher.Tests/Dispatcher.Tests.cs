@@ -2,6 +2,7 @@ using FluentAssertions;
 
 namespace EventsDispatcher.Tests;
 
+#pragma warning disable CS1591 // Missing XML comment
 public class DispatcherTests
 {
     [Fact(DisplayName = nameof(Dispatcher) + " adds a handler for a specific event type")]
@@ -128,3 +129,4 @@ public class DispatcherTests
             dispatcher.PublishAsync(new TestEvent(), cancellationToken));
     }
 }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member

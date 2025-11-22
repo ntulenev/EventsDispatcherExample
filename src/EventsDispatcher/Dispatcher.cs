@@ -9,14 +9,6 @@ namespace EventsDispatcher;
 /// </summary>
 public sealed class Dispatcher : IDispatcher
 {
-    /// <summary>
-    /// Initializes a new instance of the <see cref="Dispatcher"/> class.
-    /// </summary>
-    public Dispatcher()
-    {
-        _handlers = ImmutableDictionary<Type, ImmutableList<Delegate>>.Empty;
-    }
-
     /// <inheritdoc/>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="handler"/> is null.</exception>
     public void Subscribe<TEvent>(Func<TEvent, CancellationToken, Task> handler)
@@ -50,7 +42,7 @@ public sealed class Dispatcher : IDispatcher
             if (_handlers.TryGetValue(eventType, out var handlers))
             {
                 var newHandlers = handlers.Remove(handler);
-                _handlers = newHandlers.Count == 0
+                _handlers = (newHandlers.Count == 0)
                             ? _handlers.Remove(eventType) :
                               _handlers.SetItem(eventType, newHandlers);
             }
@@ -77,6 +69,6 @@ public sealed class Dispatcher : IDispatcher
         }
     }
 
-    private ImmutableDictionary<Type, ImmutableList<Delegate>> _handlers;
+    private ImmutableDictionary<Type, ImmutableList<Delegate>> _handlers = [];
     private readonly Lock _lock = new();
 }
